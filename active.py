@@ -41,7 +41,7 @@ signal.signal(signal.SIGINT, def_handler)
 # === BANNER ===
 def banner():
     print(f"""{CYAN}╔═══════════════════════════════════════════════════════════╗{RESET}
-{BOLD}{CYAN}║                  OSINT URL Checker v1.0                   ║{RESET}
+{BOLD}{CYAN}║                  OSINT URL Checker v5.0                   ║{RESET}
 {CYAN}║     Verifica URLs activas + Parámetros inyectables        ║{RESET}
 {CYAN}╚═══════════════════════════════════════════════════════════╝{RESET}
 {RED}                                                    by Frib1t{RESET}""")
