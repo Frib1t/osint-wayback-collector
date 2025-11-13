@@ -89,7 +89,53 @@ VULN_PARAMS = [
 
 # Rutas sensibles
 SENSITIVE_PATHS = [
-    "/.git/", "/git/", "/backup/", "/backups/", "/phpinfo", "/config", "/admin/"
+    # --- Administración ---
+    "/admin", "/admin/", "/administrator", "/administrator/",
+    "/wp-admin", "/wp-admin/", "/dashboard", "/dashboard/",
+    "/panel", "/panel/", "/cpanel", "/cpanel/", "/login", "/login/", "/auth", "/auth/",
+
+    # --- Ficheros y repositorios ---
+    "/.git/", "/.svn/", "/.hg/", "/.idea/", "/.vscode/", "/.env", "/env", "/config/", "/configs/",
+
+    # --- Backups ---
+    "/backup/", "/backups/", "/backup.zip", "/backup.tar", "/db_backup",
+    "/old/", "/old_site/", "/test/", "/testing/", "/dev/", "/stage/", "/staging/",
+
+    # --- Subidas / Descargas ---
+    "/uploads/", "/upload/", "/downloads/", "/download/", "/files/", "/file/",
+    "/media/", "/static/",
+
+    # --- Usuarios ---
+    "/user/", "/users/", "/account/", "/accounts/", "/profile/", "/profiles/",
+    "/member/", "/members/", "/clients/", "/client/",
+
+    # --- Ficheros conocidos peligrosos ---
+    "/phpinfo", "/phpinfo.php", "/info.php", "/server-status", "/server-info",
+    "/crossdomain.xml", "/robots.txt", "/sitemap.xml",
+
+    # --- Paneles ocultos ---
+    "/adminpanel/", "/admin_area/", "/secret/", "/hidden/", "/private/", "/internal/",
+
+    # --- APIs ---
+    "/api/", "/api/v1/", "/api/v2/", "/graphql", "/rest/", "/json", "/rpc/",
+
+    # --- Configuración crítica ---
+    "/config.php", "/wp-config.php", "/config.json", "/settings", "/settings.php",
+    "/database/", "/db/", "/sql/", "/mysql/",
+
+    # --- Lenguajes y frameworks ---
+    "/debug", "/debug/", "/django-admin", "/laravel", "/laravel/", "/symfony",
+    "/phpmyadmin", "/phpMyAdmin", "/pma/", "/manager/", "/jupyter/", "/notebook/",
+
+    # --- Logs expuestos ---
+    "/logs/", "/log/", "/error.log", "/access.log",
+
+    # --- Rutas de LFI típicas ---
+    "/etc/passwd", "/etc/shadow", "/proc/self/environ",
+
+    # --- Otras rutas jugosas ---
+    "/shell", "/shell.php", "/cmd.php", "/exec.php",
+    "/temp/", "/tmp/", "/cache/", "/session/", "/sessions/"
 ]
 
 def has_vuln_params(url):
