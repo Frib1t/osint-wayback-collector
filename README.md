@@ -61,7 +61,7 @@ chmod +x archive.py
 ## 🚀 Uso
 ```bash
 # Un dominio
-python3 archive.py -u lacamara.es
+python3 archive.py -u nasa.org
 
 # Archivo de subdominios
 python3 archive.py -i subs.txt -o urls.txt
