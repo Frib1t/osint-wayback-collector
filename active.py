@@ -45,12 +45,12 @@ def banner():
 {CYAN}║     Verifica URLs activas + Parámetros inyectables        ║{RESET}
 {CYAN}╚═══════════════════════════════════════════════════════════╝{RESET}""")
 
-# === PARÁMETROS VULNERABLES ===
+# === PARÁMETROS VULNERABLES === Editar el gusto ==========
 VULN_PARAMS = [
     "id", "q", "search", "upload", "query", "page", "user", "username", "email",
     "cat", "category", "dir", "file", "download", "path", "url", "redirect", "next",
-    "action", "do", "cmd", "exec", "command", "load", "include", "view",
-    "module", "lang", "language", "ref", "return", "back", "to", "go"
+    "action", "do", "cmd", "exec", "command", "load", "include", "view", ".git",
+    "module", "lang", "language", "ref", "return", "back", "to", "go", "?"
 ]
 
 def has_vuln_params(url):
