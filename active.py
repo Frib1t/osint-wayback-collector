@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OSINT URL Checker v1.0 - 100% ESTABLE
+OSINT URL Checker v5.0 - 100% ESTABLE
 """
 
 import requests
