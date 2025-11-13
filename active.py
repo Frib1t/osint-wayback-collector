@@ -43,7 +43,8 @@ def banner():
     print(f"""{CYAN}╔═══════════════════════════════════════════════════════════╗{RESET}
 {BOLD}{CYAN}║                  OSINT URL Checker v1.0                   ║{RESET}
 {CYAN}║     Verifica URLs activas + Parámetros inyectables        ║{RESET}
-{CYAN}╚═══════════════════════════════════════════════════════════╝{RESET}""")
+{CYAN}╚═══════════════════════════════════════════════════════════╝{RESET}
+{RED}by Frib1t{RESET}""")
 
 # === PARÁMETROS VULNERABLES === Editar el gusto ==========
 VULN_PARAMS = [
