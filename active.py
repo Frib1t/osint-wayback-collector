@@ -50,20 +50,31 @@ def banner():
 VULN_PARAMS = [
     "id", "q", "search", "upload", "query", "page", "user", "username", "email", "uploads",
     "cat", "category", "dir", "file", "download", "path", "url", "redirect", "next", "downloads",
-    "action", "do", "cmd", "exec", "command", "load", "include", "view",
-    "module", "lang", "language", "ref", "return", "back", "to", "go"
+    "action", "do", "cmd", "exec", "command", "load", "include", "view", ".git", "commands",
+    "module", "lang", "language", "ref", "return", "back", "to", "go", "?"
 ]
 
 def has_vuln_params(url):
+    # Normalizamos todo a minúsculas para búsquedas sencillas
+    full_url = url.lower()
     parsed = urlparse(url)
-    if not parsed.query:
-        return False
 
-    params = parse_qs(parsed.query)
-    param_names = {p.lower() for p in params.keys()}
+    # 1) Si la URL contiene cualquiera de las palabras clave "vulnerables"
+    #    en cualquier parte (path, query, etc.), la marcamos.
+    for vuln in VULN_PARAMS:
+        if vuln.lower() in full_url:
+            return True
 
-    # Coincidencia EXACTA de nombres de parámetro
-    return any(v in param_names for v in VULN_PARAMS)
+    # 2) Si tiene pinta de llevar parámetros o asignaciones:
+    #    - cualquier "?" (query string)
+    #    - cualquier "=" (asignación tipo a=b incluso en path raro)
+    #    - combinación "?=" por si acaso
+    if "?" in full_url or "=" in full_url or "?=" in full_url:
+        return True
+
+    # Si no cumple nada de lo anterior, no la consideramos "interesante"
+    return False
+
 
 # === VERIFICAR URL ===
 def check_url(url, session, results_queue, vuln_queue):
