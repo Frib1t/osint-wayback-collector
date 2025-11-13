@@ -47,6 +47,7 @@ def banner():
 {RED}                                                    by Frib1t{RESET}""")
 
 # === PARÁMETROS VULNERABLES === Editar el gusto ==========
+'''
 VULN_PARAMS = [
     "id", "q", "search", "upload", "query", "page", "user", "username", "email", "uploads",
     "cat", "category", "dir", "file", "download", "path", "url", "redirect", "next", "downloads",
@@ -75,7 +76,52 @@ def has_vuln_params(url):
     # Si no cumple nada de lo anterior, no la consideramos "interesante"
     return False
 
+'''
+# Keywords que deben coincidir como PALABRA COMPLETA
+VULN_PARAMS = [
+    "id", "q", "search", "upload", "query", "page", "user", "username",
+    "email", "uploads", "cat", "category", "dir", "file", "download",
+    "path", "url", "redirect", "next", "downloads", "action", "do", "cmd",
+    "exec", "command", "load", "include", "view", "module", "lang",
+    "language", "ref", "return", "back", "to", "go"
+]
 
+# Rutas sensibles
+SENSITIVE_PATHS = [
+    "/.git/", "/git/", "/backup/", "/backups/", "/phpinfo", "/config", "/admin/"
+]
+
+def has_vuln_params(url):
+    parsed = urlparse(url)
+    full_url = url.lower()
+
+    # 1) Path sospechoso (pero solo si coincide exacto, no por subcadenas normales)
+    for sensitive in SENSITIVE_PATHS:
+        if sensitive in full_url:
+            return True
+
+    # 2) Query con parámetros
+    qs = parse_qs(parsed.query)
+    param_names = [p.lower() for p in qs.keys()]
+
+    # Coincidencia EXACTA (no subcadena)
+    if any(p in VULN_PARAMS for p in param_names):
+        return True
+
+    # 3) Si hay parámetros aunque no estén en la lista
+    if parsed.query:
+        return True
+
+    # 4) Si hay "=" en la URL (esto detecta parámetros sin clave o asignaciones raras)
+    if "=" in full_url:
+        return True
+
+    # 5) Si existe "?" aunque esté vacío
+    if "?" in full_url:
+        return True
+
+    return False
+    
 # === VERIFICAR URL ===
 def check_url(url, session, results_queue, vuln_queue):
     if stop_event.is_set() or not url.startswith("http"):
