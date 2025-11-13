@@ -58,8 +58,12 @@ def has_vuln_params(url):
     parsed = urlparse(url)
     if not parsed.query:
         return False
-    params = parse_qs(parsed.query)
-    return any(vuln in param.lower() for param in params.keys() for vuln in VULN_PARAMS)
+
+    params = parse_qs(parsed.query)  # dict: nombre -> [valores]
+    param_names = {p.lower() for p in params.keys()}
+
+    # Coincidencia exacta de nombre de parámetro
+    return any(vuln.lower() in param_names for vuln in VULN_PARAMS)
 
 # === VERIFICAR URL ===
 def check_url(url, session, results_queue, vuln_queue):
