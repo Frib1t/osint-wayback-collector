@@ -19,8 +19,9 @@ CYAN = "\033[96m"
 def banner():
     print(f"""{CYAN}╔═══════════════════════════════════════════════════════════╗{RESET}""")
     print(f"""{BOLD}{CYAN}║          OSINT Wayback URL Collector v4.0                 ║{RESET}""")
-    print(f"""{CYAN}║      URLs históricas con barra de progreso                ║{RESET}""")
+    print(f"""{CYAN}║      URLs históricas by Frib1t                            ║{RESET}""")
     print(f"""{CYAN}╚═══════════════════════════════════════════════════════════╝{RESET}""")
+
 
 # === WAYBACK URLs ===
 def get_wayback_urls(domain, session, p_urls):
