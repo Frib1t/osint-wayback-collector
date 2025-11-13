@@ -50,8 +50,8 @@ def banner():
 VULN_PARAMS = [
     "id", "q", "search", "upload", "query", "page", "user", "username", "email", "uploads",
     "cat", "category", "dir", "file", "download", "path", "url", "redirect", "next", "downloads",
-    "action", "do", "cmd", "exec", "command", "load", "include", "view", ".git", "commands",
-    "module", "lang", "language", "ref", "return", "back", "to", "go", "?"
+    "action", "do", "cmd", "exec", "command", "load", "include", "view",
+    "module", "lang", "language", "ref", "return", "back", "to", "go"
 ]
 
 def has_vuln_params(url):
@@ -59,11 +59,11 @@ def has_vuln_params(url):
     if not parsed.query:
         return False
 
-    params = parse_qs(parsed.query)  # dict: nombre -> [valores]
+    params = parse_qs(parsed.query)
     param_names = {p.lower() for p in params.keys()}
 
-    # Coincidencia exacta de nombre de parámetro
-    return any(vuln.lower() in param_names for vuln in VULN_PARAMS)
+    # Coincidencia EXACTA de nombres de parámetro
+    return any(v in param_names for v in VULN_PARAMS)
 
 # === VERIFICAR URL ===
 def check_url(url, session, results_queue, vuln_queue):
