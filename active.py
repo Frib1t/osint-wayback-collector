@@ -47,9 +47,9 @@ def banner():
 
 # === PARÁMETROS VULNERABLES === Editar el gusto ==========
 VULN_PARAMS = [
-    "id", "q", "search", "upload", "query", "page", "user", "username", "email",
-    "cat", "category", "dir", "file", "download", "path", "url", "redirect", "next",
-    "action", "do", "cmd", "exec", "command", "load", "include", "view", ".git",
+    "id", "q", "search", "upload", "query", "page", "user", "username", "email", "uploads",
+    "cat", "category", "dir", "file", "download", "path", "url", "redirect", "next", "downloads",
+    "action", "do", "cmd", "exec", "command", "load", "include", "view", ".git", "commands",
     "module", "lang", "language", "ref", "return", "back", "to", "go", "?"
 ]
 
