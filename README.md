@@ -98,7 +98,7 @@ URLs encontradas: Total: 487 URLs → URLS.txt
 
 ------
  
-# 🔍 2. `artive.py` – OSINT URL Checker v1.0
+# 🔍 2. `active.py` – OSINT URL Checker v5.0
 Verifica URLs activas y detecta parámetros inyectables (SQLi, XSS, LFI, etc.).
 
 ## ✨ Características
